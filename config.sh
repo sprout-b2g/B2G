@@ -30,7 +30,7 @@ case `uname` in
 	exit -1
 esac
 
-GITREPO=${GITREPO:-"git://github.com/cm-b2g/b2g-manifest"}
+GITREPO=${GITREPO:-"git://github.com/sprout-b2g/b2g-manifest"}
 BRANCH=${BRANCH:-b2g/cm-12.1-YOG7D}
 
 while [ $# -ge 1 ]; do
@@ -148,6 +148,11 @@ case "$1" in
 	repo_sync wileyfox
 	;;
 
+"sprout-l-cm")
+	echo PRODUCT_NAME=$1 | sed 's/.....$//' >> .tmp-config &&
+	repo_sync sprout
+	;;
+
 *)
 	echo "Usage: $0 [-cdflnq] [-j <jobs>] [--force-sync] (device name)"
 	echo "Flags are passed through to |./repo sync|."
@@ -207,6 +212,7 @@ case "$1" in
 	echo ""
 	echo "$(tput setaf 6)$(tput bold)* Official CyanogenMod devices$(tput sgr 0)"
 	echo "- $(tput setaf 6)crackling-l-cm$(tput sgr 0)  (Wileyfox Swift)"
+        echo "- $(tput setaf 6)sprout-l-cm$(tput sgr 0)  (Android One)"
 	exit -1
 	;;
 esac
